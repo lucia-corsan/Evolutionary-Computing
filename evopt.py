@@ -1,4 +1,3 @@
-# evopt.py
 import numpy as np
 import random
 import time
@@ -17,15 +16,14 @@ class EvolutionaryOptimizer:
     def __init__(self,
                  maxtime=3600,
                  pop_size=30,
-                 generations=100,
                  crossover_prob=0.7,
                  mutation_prob=0.3,
                  elitism=True,
-                 patience=15,
+                 patience=40,
                  random_state=42,
                  models=None,
-                 min_genes=2,
-                 max_genes=6,
+                 min_genes=3,
+                 max_genes=10,
                  complexity_penalty=0.001):
         """
         Evolutionary optimizer for feature synthesis.
@@ -34,7 +32,6 @@ class EvolutionaryOptimizer:
         """
         self.maxtime = maxtime
         self.pop_size = pop_size
-        self.generations = generations
         self.crossover_prob = crossover_prob
         self.mutation_prob = mutation_prob
         self.elitism = elitism
@@ -189,7 +186,7 @@ class EvolutionaryOptimizer:
         no_improve = 0
         gen = 0
 
-        while time.time() - start < self.maxtime and gen < self.generations:
+        while time.time() - start < self.maxtime:
             new_pop = []
 
             # Elitismo
